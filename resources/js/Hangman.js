@@ -30,7 +30,43 @@ class Hangman {
    * @param {string} difficulty a difficulty string to be passed to the getRandomWord Function
    * @param {function} next callback function to be called after a word is received from the API.
    */
-  
+  start(difficulty, next) {
+    // Validate difficulty input
+    if (difficulty !== 'easy' && difficulty !== 'medium' && difficulty !== 'hard') {
+        throw new Error(`Invalid difficulty level: ${difficulty}`);
+    }
+
+    // Use getRandomWord method to fetch a random word based on the selected difficulty
+    this.getRandomWord(difficulty)
+        .then(word => {
+            // Set the fetched word to the class's this.word
+            this.word = word;
+
+            // Clear canvas
+            this.clearCanvas();
+
+            // Draw base
+            this.drawBase();
+
+            // Reset guesses array
+            this.guesses = [];
+
+            // Reset game over and win status
+            this.isOver = false;
+            this.didWin = false;
+
+            // Call the next callback function if provided
+            if (typeof next === 'function') {
+                next();
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching word:', error);
+            alert('Error fetching word. Please try again later.');
+        });
+}
+
+
   /**
    *
    * @param {string} letter the guessed letter.
