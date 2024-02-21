@@ -83,17 +83,24 @@ try {
 
     // Check game status
     if (game.isOver) {
-        if (game.didWin) {
-            alert('Congratulations! You have won!');
-        } else {
-            alert('Sorry, you have lost. The correct word was: ' + game.word);
-        }
-        // Reset the game
-        game.start(difficultySelect.value);
-        // Show the start wrapper and hide the game wrapper
-        startWrapper.classList.remove('hidden');
-        gameWrapper.classList.add('hidden');
-    }
+      let message;
+      if (game.didWin) {
+          message = 'Congratulations! You have won!';
+      } else {
+          message = 'Sorry, you have lost. The correct word was: ' + game.word;
+      }
+      const resetConfirmation = confirm(message + '\nDo you want to play again?');
+      if (resetConfirmation) {
+          // Reset the game
+          game.start(difficultySelect.value);
+          // Show the start wrapper and hide the game wrapper
+          startWrapper.classList.remove('hidden');
+          gameWrapper.classList.add('hidden');
+      } else {
+          // User chose not to reset the game, allow them to continue
+          alert('Thank you for playing!');
+      }
+  }
 });
 
   // add a click Event Listener to the resetGame button
