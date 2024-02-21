@@ -6,6 +6,12 @@ class Hangman {
 
     this.canvas = _canvas;
     this.ctx = this.canvas.getContext(`2d`);
+    this.word = ""; // Current word to guess
+    this.guesses = []; // Array to store guessed letters
+    this.isOver = false; // Flag to indicate if the game is over
+    this.didWin = false; // Flag to indicate if the player won
+    this.maxWrongGuesses = 6; // Maximum allowed wrong guesses
+    this.wrongGuesses = 0; // Counter for wrong guesses
   }
 
   /**
