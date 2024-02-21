@@ -54,15 +54,23 @@ class Hangman {
    * @param {string} letter the guessed letter.
    */
   guess(letter) {
-    // Check if nothing was provided and throw an error if so
-    // Check for invalid cases (numbers, symbols, ...) throw an error if it is
-    // Check if more than one letter was provided. throw an error if it is.
-    // if it's a letter, convert it to lower case for consistency.
-    // check if this.guesses includes the letter. Throw an error if it has been guessed already.
-    // add the new letter to the guesses array.
-    // check if the word includes the guessed letter:
-    //    if it's is call checkWin()
-    //    if it's not call onWrongGuess()
+    if (!letter || !/[a-zA-Z]/.test(letter) || letter.length !== 1) {
+      throw new Error("Invalid guess");
+    }
+
+    letter = letter.toUpperCase();
+
+    if (this.guesses.includes(letter)) {
+      throw new Error("Letter already guessed");
+    }
+
+    this.guesses.push(letter);
+
+    if (!this.word.includes(letter)) {
+      this.onWrongGuess();
+    } else {
+      this.checkWin();
+    }
   }
 
   checkWin() {
