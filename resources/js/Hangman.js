@@ -101,8 +101,17 @@ class Hangman {
    * i.e.: if the word is BOOK, and the letter O has been guessed, this would return _ O O _
    */
   getWordHolderText() {
-    return;
-  }
+    let wordHolder = '';
+    for (const letter of this.word) {
+        if (this.guesses.includes(letter)) {
+            wordHolder += letter + ' ';
+        } else {
+            wordHolder += '_ ';
+        }
+    }
+    return wordHolder.trim(); // Remove trailing whitespace
+}
+
 
   /**
    * This function returns a string of all the previous guesses, separated by a comma
