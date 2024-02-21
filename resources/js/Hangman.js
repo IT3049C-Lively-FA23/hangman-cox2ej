@@ -52,7 +52,33 @@ class Hangman {
     } else {
       throw new Error('Invalid difficulty level');
     }
+
+    // Fetch a random word within the specified length range
+    this.getRandomWord(difficulty)
+      .then(word => {
+        if (word.length < minLength || word.length > maxLength) {
+          // If the fetched word does not match the difficulty level, recursively call start until a suitable word is obtained
+          return this.start(difficulty, next);
+        } else {
+          // Set the fetched word to this.word
+          this.word = word;
+          // Clear canvas
+          this.clearCanvas();
+          // Draw base
+          this.drawBase();
+          // Reset guesses to an empty array
+          this.guesses = [];
+          // Reset isOver to false
+          this.isOver = false;
+          // Reset didWin to false
+          this.didWin = false;
+          // Call the next callback function
+          next();
+        }
+      })
+      .catch(error => console.error(error));
   }
+
   /**
    *
    * @param {string} letter the guessed letter.
