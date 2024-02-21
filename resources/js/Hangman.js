@@ -101,7 +101,7 @@ class Hangman {
   getWordHolderText() {
     return this.word.split('').map(letter => this.guesses.includes(letter) ? letter : '_').join(' ');
   }
-  
+
   /**
    * This function returns a string of all the previous guesses, separated by a comma
    * This would return something that looks like
@@ -109,7 +109,7 @@ class Hangman {
    * Hint: use the Array.prototype.join method.
    */
   getGuessesText() {
-    return ``;
+    return `(Guesses: ${this.guesses.join(', ')})`;
   }
 
   /**
