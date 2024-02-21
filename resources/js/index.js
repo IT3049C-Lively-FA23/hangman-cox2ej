@@ -55,7 +55,29 @@ try {
   //      2. disable the guessButton
   //      3. show the resetGame button
   // if the game is won or lost, show an alert.
-  guessForm.addEventListener(`submit`, function (e) {});
+  guessForm.addEventListener(`submit`, function (event) {
+    event.preventDefault();
+    const guess = guessInput.value.trim().toUpperCase();
+    try {
+      hangmanGame.guess(guess);
+      wordHolderText.textContent = hangmanGame.getWordHolderText();
+      guessesText.textContent = hangmanGame.getGuessesText();
+      guessInput.value = '';
+
+      if (hangmanGame.isOver) {
+        guessInput.disabled = true;
+        guessSubmitButton.disabled = true;
+        resetGame.classList.remove('hidden');
+        if (hangmanGame.didWin) {
+          alert('Congratulations! You won!');
+        } else {
+          alert('Game Over. You lost!');
+        }
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  });
 
   // add a click Event Listener to the resetGame button
   //    show the startWrapper
