@@ -82,7 +82,15 @@ try {
   // add a click Event Listener to the resetGame button
   //    show the startWrapper
   //    hide the gameWrapper
-  resetGame.addEventListener(`click`, function (e) {});
+  resetGame.addEventListener(`click`, function (event) {
+    event.preventDefault();
+    startWrapper.classList.remove('hidden');
+    gameWrapper.classList.add('hidden');
+    resetGame.classList.add('hidden');
+    guessInput.disabled = false;
+    guessSubmitButton.disabled = false;
+  });
+  
 } catch (error) {
   console.error(error);
   alert(error);
