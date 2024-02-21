@@ -110,6 +110,7 @@ class Hangman {
         break;
       case 6:
         this.drawRightLeg();
+      case 7:
         this.isOver = true;
         this.didWin = false;
         break;
