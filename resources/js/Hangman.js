@@ -120,8 +120,9 @@ class Hangman {
    * Hint: use the Array.prototype.join method.
    */
   getGuessesText() {
-    return ``;
-  }
+    return `Previously Guessed: ${this.guesses.join(', ')}`;
+}
+
 
   /**
    * Clears the canvas
