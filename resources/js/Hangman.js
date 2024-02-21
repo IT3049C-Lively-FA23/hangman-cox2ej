@@ -31,14 +31,28 @@ class Hangman {
    * @param {function} next callback function to be called after a word is received from the API.
    */
   start(difficulty, next) {
-    // get word and set it to the class's this.word
-    // clear canvas
-    // draw base
-    // reset this.guesses to empty array
-    // reset this.isOver to false
-    // reset this.didWin to false
-  }
+    // Get word and set it to the class's this.word
+    // Clear canvas
+    // Draw base
+    // Reset this.guesses to empty array
+    // Reset this.isOver to false
+    // Reset this.didWin to false
 
+    // Define word length ranges based on difficulty levels
+    let minLength, maxLength;
+    if (difficulty === 'easy') {
+      minLength = 3;
+      maxLength = 5;
+    } else if (difficulty === 'medium') {
+      minLength = 6;
+      maxLength = 9;
+    } else if (difficulty === 'hard') {
+      minLength = 10;
+      maxLength = 15;
+    } else {
+      throw new Error('Invalid difficulty level');
+    }
+  }
   /**
    *
    * @param {string} letter the guessed letter.
