@@ -44,64 +44,7 @@ try {
   //      2. disable the guessButton
   //      3. show the resetGame button
   // if the game is won or lost, show an alert.
-  guessForm.addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent form submission
-
-    // Get the guess input value
-    const guess = guessInput.value.trim().toLowerCase();
-
-    // Reset the guess input field
-    guessInput.value = '';
-
-    // Validate the guess
-    if (guess.length === 0) {
-        alert('Please enter a letter.');
-        return;
-    }
-
-    if (guess.length > 1) {
-        alert('Please enter only one letter.');
-        return;
-    }
-
-    if (!/^[a-zA-Z]$/.test(guess)) {
-        alert('Please enter a valid letter.');
-        return;
-    }
-
-    if (game.guesses.includes(guess)) {
-        alert('You have already guessed this letter.');
-        return;
-    }
-
-    // Call the game's guess method
-    game.guess(guess);
-
-    // Update the display
-    wordHolderText.innerText = game.getWordHolderText();
-    guessesText.innerText = game.getGuessesText();
-
-    // Check game status
-    if (game.isOver) {
-      let message;
-      if (game.didWin) {
-          message = 'Congratulations! You have won!';
-      } else {
-          message = 'Sorry, you have lost. The correct word was: ' + game.word;
-      }
-      const resetConfirmation = confirm(message + '\nDo you want to play again?');
-      if (resetConfirmation) {
-          // Reset the game
-          game.start(difficultySelect.value);
-          // Show the start wrapper and hide the game wrapper
-          startWrapper.classList.remove('hidden');
-          gameWrapper.classList.add('hidden');
-      } else {
-          // User chose not to reset the game, allow them to continue
-          alert('Thank you for playing!');
-      }
-  }
-});
+  guessForm.addEventListener(`submit`, function (e) {});
 
   // add a click Event Listener to the resetGame button
   //    show the startWrapper

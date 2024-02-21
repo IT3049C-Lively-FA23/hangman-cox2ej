@@ -31,41 +31,13 @@ class Hangman {
    * @param {function} next callback function to be called after a word is received from the API.
    */
   start(difficulty, next) {
-    // Validate difficulty input
-    if (difficulty !== 'easy' && difficulty !== 'medium' && difficulty !== 'hard') {
-        throw new Error(`Invalid difficulty level: ${difficulty}`);
-    }
-
-    // Use getRandomWord method to fetch a random word based on the selected difficulty
-    this.getRandomWord(difficulty)
-        .then(word => {
-            // Set the fetched word to the class's this.word
-            this.word = word;
-
-            // Clear canvas
-            this.clearCanvas();
-
-            // Draw base
-            this.drawBase();
-
-            // Reset guesses array
-            this.guesses = [];
-
-            // Reset game over and win status
-            this.isOver = false;
-            this.didWin = false;
-
-            // Call the next callback function if provided
-            if (typeof next === 'function') {
-                next();
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching word:', error);
-            alert('Error fetching word. Please try again later.');
-        });
-}
-
+    // get word and set it to the class's this.word
+    // clear canvas
+    // draw base
+    // reset this.guesses to empty array
+    // reset this.isOver to false
+    // reset this.didWin to false
+  }
 
   /**
    *
@@ -101,17 +73,8 @@ class Hangman {
    * i.e.: if the word is BOOK, and the letter O has been guessed, this would return _ O O _
    */
   getWordHolderText() {
-    let wordHolder = '';
-    for (const letter of this.word) {
-        if (this.guesses.includes(letter)) {
-            wordHolder += letter + ' ';
-        } else {
-            wordHolder += '_ ';
-        }
-    }
-    return wordHolder.trim(); // Remove trailing whitespace
-}
-
+    return;
+  }
 
   /**
    * This function returns a string of all the previous guesses, separated by a comma
@@ -120,9 +83,8 @@ class Hangman {
    * Hint: use the Array.prototype.join method.
    */
   getGuessesText() {
-    return `Previously Guessed: ${this.guesses.join(', ')}`;
-}
-
+    return ``;
+  }
 
   /**
    * Clears the canvas
@@ -141,50 +103,15 @@ class Hangman {
     this.ctx.fillRect(10, 410, 175, 10); // Base
   }
 
-  drawHead() {
-    // Draw head
-    this.ctx.beginPath();
-    this.ctx.arc(175, 100, 25, 0, Math.PI * 2);
-    this.ctx.stroke();
-}
+  drawHead() {}
 
-drawBody() {
-  // Draw body
-  this.ctx.beginPath();
-  this.ctx.moveTo(175, 125);
-  this.ctx.lineTo(175, 200);
-  this.ctx.stroke();
-}
+  drawBody() {}
 
-drawLeftArm() {
-  // Draw left arm
-  this.ctx.beginPath();
-  this.ctx.moveTo(175, 150);
-  this.ctx.lineTo(150, 175);
-  this.ctx.stroke();
-}
+  drawLeftArm() {}
 
-drawRightArm() {
-  // Draw right arm
-  this.ctx.beginPath();
-  this.ctx.moveTo(175, 150);
-  this.ctx.lineTo(200, 175);
-  this.ctx.stroke();
-}
+  drawRightArm() {}
 
-drawLeftLeg() {
-  // Draw left leg
-  this.ctx.beginPath();
-  this.ctx.moveTo(175, 200);
-  this.ctx.lineTo(150, 225);
-  this.ctx.stroke();
-}
+  drawLeftLeg() {}
 
-drawRightLeg() {
-  // Draw right leg
-  this.ctx.beginPath();
-  this.ctx.moveTo(175, 200);
-  this.ctx.lineTo(200, 225);
-  this.ctx.stroke();
-}
+  drawRightLeg() {}
 }
