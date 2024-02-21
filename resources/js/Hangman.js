@@ -86,7 +86,12 @@ class Hangman {
    * drawHead, drawBody, drawRightArm, drawLeftArm, drawRightLeg, or drawLeftLeg.
    * if the number wrong guesses is 6, then also set isOver to true and didWin to false.
    */
-  onWrongGuess() {}
+  onWrongGuess() {
+    this.wrongGuesses++;
+    if (this.wrongGuesses === this.maxWrongGuesses) {
+      this.isOver = true;
+    }
+  }
 
   /**
    * This function will return a string of the word placeholder
