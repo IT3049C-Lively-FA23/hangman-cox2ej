@@ -10,7 +10,7 @@ class Hangman {
     this.guesses = []; // Array to store guessed letters
     this.isOver = false; // Flag to indicate if the game is over
     this.didWin = false; // Flag to indicate if the player won
-    this.maxWrongGuesses = 6; // Maximum allowed wrong guesses
+    this.maxWrongGuesses = 7; // Maximum allowed wrong guesses
     this.wrongGuesses = 0; // Counter for wrong guesses
   }
 
