@@ -37,12 +37,16 @@ class Hangman {
    * @param {function} next callback function to be called after a word is received from the API.
    */
   start(difficulty, next) {
-    // get word and set it to the class's this.word
-    // clear canvas
-    // draw base
-    // reset this.guesses to empty array
-    // reset this.isOver to false
-    // reset this.didWin to false
+    this.clearCanvas();
+    this.drawBase();
+    this.guesses = [];
+    this.isOver = false;
+    this.didWin = false;
+    this.wrongGuesses = 0;
+    this.getRandomWord(difficulty).then((word) => {
+      this.word = word.toUpperCase(); // Convert word to uppercase for consistency
+      next();
+    });
   }
 
   /**
