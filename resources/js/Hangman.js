@@ -91,6 +91,31 @@ class Hangman {
     if (this.wrongGuesses === this.maxWrongGuesses) {
       this.isOver = true;
     }
+
+    switch (this.wrongGuesses) {
+      case 1:
+        this.drawHead();
+        break;
+      case 2:
+        this.drawBody();
+        break;
+      case 3:
+        this.drawLeftArm();
+        break;
+      case 4:
+        this.drawRightArm();
+        break;
+      case 5:
+        this.drawLeftLeg();
+        break;
+      case 6:
+        this.drawRightLeg();
+        this.isOver = true;
+        this.didWin = false;
+        break;
+      default:
+        break;
+    }
   }
 
   /**
